@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axiosJsonPlaceholder from '../../lib/axiosConfig'
 import { useQuery } from 'react-query'
 import ThCell from '../../features/home/components/thCell'
 import TdCell from '../../features/home/components/tdCell'
 import { UserProps } from '../../types/userProps'
+import { setUsers } from '../../context/redux/users'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../context/redux/store'
 
 const Home = () => {
-    const { data: users } = useQuery('users', () =>
-        axiosJsonPlaceholder.get('/users')
+    const dispatch = useDispatch()
+
+    const users = useSelector((state: RootState) => state.users.users)
+
+    useQuery('users', () =>
+        axiosJsonPlaceholder.get('/users').then((users) => {
+            dispatch(setUsers(users.data))
+        })
     )
 
     return (
@@ -23,7 +32,7 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users?.data.map((user: UserProps) => (
+                        {users.map((user: UserProps) => (
                             <tr
                                 key={user.id}
                                 className='border-b bg-gray-800 border-gray-700 font-medium'
