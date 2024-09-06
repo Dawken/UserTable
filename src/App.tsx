@@ -1,7 +1,7 @@
 import React from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/home/home'
+import Home from './app/routes/home'
 
 const queryClient = new QueryClient({
     defaultOptions: {
