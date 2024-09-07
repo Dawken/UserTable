@@ -4,7 +4,7 @@ import { UserProps } from '../../../types/userProps'
 import useHome from './useHome'
 import TableInput from '../../../features/home/components/tableInput'
 import NameIcon from '../../../components/ui/icons/nameIcon'
-import { UserIcon } from '../../../components/ui/icons/userIcon'
+import UserIcon from '../../../components/ui/icons/userIcon'
 import EmailIcon from '../../../components/ui/icons/emailIcon'
 import PhoneIcon from '../../../components/ui/icons/phoneIcon'
 
