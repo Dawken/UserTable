@@ -3,6 +3,10 @@ import TdCell from '../../../features/home/components/tdCell'
 import { UserProps } from '../../../types/userProps'
 import useHome from './useHome'
 import TableInput from '../../../features/home/components/tableInput'
+import NameIcon from '../../../components/ui/icons/nameIcon'
+import { UserIcon } from '../../../components/ui/icons/userIcon'
+import EmailIcon from '../../../components/ui/icons/emailIcon'
+import PhoneIcon from '../../../components/ui/icons/phoneIcon'
 
 const Home = () => {
     const { filters, filteredUsers } = useHome()
@@ -15,10 +19,26 @@ const Home = () => {
                 <table className='w-full min-h-full  max-w-[1000px] text-xs text-left text-gray-400 rounded-2xl overflow-hidden bg-gray-800 '>
                     <thead className='table bg-gray-700 break-word uppercase'>
                         <tr>
-                            <TableInput value={name} keyName={'name'} />
-                            <TableInput value={username} keyName={'username'} />
-                            <TableInput value={email} keyName={'email'} />
-                            <TableInput value={phone} keyName={'phone'} />
+                            <TableInput
+                                value={name}
+                                keyName={'name'}
+                                icon={<NameIcon />}
+                            />
+                            <TableInput
+                                value={username}
+                                keyName={'username'}
+                                icon={<UserIcon />}
+                            />
+                            <TableInput
+                                value={email}
+                                keyName={'email'}
+                                icon={<EmailIcon />}
+                            />
+                            <TableInput
+                                value={phone}
+                                keyName={'phone'}
+                                icon={<PhoneIcon />}
+                            />
                         </tr>
                     </thead>
                     <tbody className='w-full table'>
