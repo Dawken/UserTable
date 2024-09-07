@@ -12,7 +12,7 @@ const useHome = () => {
         phone: filterPhone,
     } = filters
 
-    const { data: usersData } = useGetUsersQuery()
+    const { data: usersData, isLoading } = useGetUsersQuery()
 
     const filteredUsers = usersData?.filter((user) => {
         const { name, username, email, phone } = user
@@ -27,6 +27,7 @@ const useHome = () => {
     return {
         filters,
         filteredUsers,
+        isLoading,
     }
 }
 
