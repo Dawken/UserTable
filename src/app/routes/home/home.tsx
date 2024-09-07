@@ -42,26 +42,41 @@ const Home = () => {
                             />
                         </tr>
                     </thead>
-                    <tbody className='w-full h-[calc(100%-60px)] table grow-1'>
-                        <tr>
-                            <td className='size-full flex justify-center items-center'>
-                                {isLoading && <Loader />}
-                            </td>
-                        </tr>
-                        {filteredUsers?.map((user: UserProps) => {
-                            const { name, username, email, phone } = user
-                            return (
-                                <tr
-                                    key={user.id}
-                                    className='border-b border-gray-700 font-medium hover:bg-gray-700 transition-all duration-300'
-                                >
-                                    <TdCell name={name} />
-                                    <TdCell name={username} />
-                                    <TdCell name={email} />
-                                    <TdCell name={phone} />
-                                </tr>
-                            )
-                        })}
+                    <tbody
+                        className={`w-full ${
+                            isLoading || filteredUsers?.length === 0
+                                ? 'h-[calc(100%-60px)]'
+                                : 'h-fit'
+                        } table grow-1`}
+                    >
+                        {isLoading ? (
+                            <tr>
+                                <td className='size-full flex justify-center items-center'>
+                                    <Loader />
+                                </td>
+                            </tr>
+                        ) : filteredUsers && filteredUsers.length > 0 ? (
+                            filteredUsers.map((user: UserProps) => {
+                                const { name, username, email, phone } = user
+                                return (
+                                    <tr
+                                        key={user.id}
+                                        className='border-b border-gray-700 font-medium hover:bg-gray-700 transition-all duration-300'
+                                    >
+                                        <TdCell name={name} />
+                                        <TdCell name={username} />
+                                        <TdCell name={email} />
+                                        <TdCell name={phone} />
+                                    </tr>
+                                )
+                            })
+                        ) : (
+                            <tr>
+                                <td className='size-full flex justify-center items-center'>
+                                    Results not found :(
+                                </td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>
