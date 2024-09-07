@@ -8,9 +8,10 @@ import UserIcon from '../../../components/ui/icons/userIcon'
 import EmailIcon from '../../../components/ui/icons/emailIcon'
 import PhoneIcon from '../../../components/ui/icons/phoneIcon'
 import Loader from '../../../components/ui/animations/loader/loader'
+import TableElement from '../../../features/home/components/tableElement'
 
 const Home = () => {
-    const { filters, filteredUsers, isLoading } = useHome()
+    const { filters, filteredUsers, isLoading, isError } = useHome()
 
     const { name, username, email, phone } = filters
 
@@ -44,17 +45,15 @@ const Home = () => {
                     </thead>
                     <tbody
                         className={`w-full ${
-                            isLoading || filteredUsers?.length === 0
+                            isLoading || filteredUsers?.length === 0 || isError
                                 ? 'h-[calc(100%-60px)]'
                                 : 'h-fit'
-                        } table grow-1`}
+                        } table`}
                     >
                         {isLoading ? (
-                            <tr>
-                                <td className='size-full flex justify-center items-center'>
-                                    <Loader />
-                                </td>
-                            </tr>
+                            <TableElement>
+                                <Loader />
+                            </TableElement>
                         ) : filteredUsers && filteredUsers.length > 0 ? (
                             filteredUsers.map((user: UserProps) => {
                                 const { name, username, email, phone } = user
@@ -71,11 +70,17 @@ const Home = () => {
                                 )
                             })
                         ) : (
-                            <tr>
-                                <td className='size-full flex justify-center items-center'>
-                                    Results not found :(
-                                </td>
-                            </tr>
+                            <TableElement>
+                                <span>Results not found :(</span>
+                            </TableElement>
+                        )}
+                        {isError && (
+                            <TableElement>
+                                <span>
+                                    Error occured while fetching data. Try again
+                                    later
+                                </span>
+                            </TableElement>
                         )}
                     </tbody>
                 </table>

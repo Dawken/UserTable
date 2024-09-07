@@ -12,7 +12,7 @@ const useHome = () => {
         phone: filterPhone,
     } = filters
 
-    const { data: usersData, isLoading } = useGetUsersQuery()
+    const { data: usersData, isLoading, isError } = useGetUsersQuery()
 
     const filteredUsers = usersData?.filter((user) => {
         const { name, username, email, phone } = user
@@ -23,11 +23,11 @@ const useHome = () => {
             phone.toLowerCase().includes(filterPhone.toLowerCase())
         )
     })
-
     return {
         filters,
         filteredUsers,
         isLoading,
+        isError,
     }
 }
 
