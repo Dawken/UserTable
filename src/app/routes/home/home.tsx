@@ -70,9 +70,11 @@ const Home = () => {
                                 )
                             })
                         ) : (
-                            <TableElement>
-                                <span>Results not found :(</span>
-                            </TableElement>
+                            !isError && (
+                                <TableElement>
+                                    <span>Results not found :(</span>
+                                </TableElement>
+                            )
                         )}
                         {isError && (
                             <TableElement>
