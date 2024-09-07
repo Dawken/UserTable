@@ -22,7 +22,7 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody className='w-full table'>
-                        {filteredUsers.map((user: UserProps) => {
+                        {filteredUsers?.map((user: UserProps) => {
                             const { name, username, email, phone } = user
                             return (
                                 <tr
