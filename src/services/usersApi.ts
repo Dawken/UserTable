@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { UserProps } from '../types/userProps'
+import { UserTypes } from '../types/userTypes'
 
 const authGateway = process.env.REACT_APP_AUTH_GATEWAY
 
@@ -9,7 +9,7 @@ export const usersApi = createApi({
         baseUrl: authGateway,
     }),
     endpoints: (builder) => ({
-        getUsers: builder.query<UserProps[], void>({
+        getUsers: builder.query<UserTypes[], void>({
             query: () => '/users',
         }),
     }),

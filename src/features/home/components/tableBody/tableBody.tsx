@@ -3,7 +3,7 @@ import TableElement from '../tableElement'
 import Loader from '../../../../components/ui/animations/loader/loader'
 import TdCell from '../tdCell'
 import useTableBody from './useTableBody'
-import { UserProps } from '../../../../types/userProps'
+import { UserTypes } from '../../../../types/userTypes'
 
 const TableBody = () => {
     const { filteredUsers, isLoading, isError } = useTableBody()
@@ -20,7 +20,7 @@ const TableBody = () => {
                     <Loader />
                 </TableElement>
             ) : filteredUsers && filteredUsers.length > 0 ? (
-                filteredUsers.map((user: UserProps) => {
+                filteredUsers.map((user: UserTypes) => {
                     const { name, username, email, phone } = user
                     return (
                         <tr

@@ -1,9 +1,9 @@
 import { ReactElement } from 'react'
-import { FiltersState } from '../../../../types/filterProps'
+import { FiltersTypes } from '../../../../types/filterTypes'
 
 type Props = {
     value: string
-    keyName: keyof FiltersState
+    keyName: keyof FiltersTypes
     icon: ReactElement
 }
 export type { Props }

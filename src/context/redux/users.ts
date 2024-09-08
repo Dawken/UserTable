@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { FiltersState } from '../../types/filterProps'
+import { FiltersTypes } from '../../types/filterTypes'
 
 type UsersState = {
-    filters: FiltersState
+    filters: FiltersTypes
 }
 
 const initialState: UsersState = {
@@ -20,7 +20,7 @@ export const users = createSlice({
     reducers: {
         setFilter: (
             state,
-            action: PayloadAction<{ key: keyof FiltersState; value: string }>
+            action: PayloadAction<{ key: keyof FiltersTypes; value: string }>
         ) => {
             const { key, value } = action.payload
             state.filters[key] = value
