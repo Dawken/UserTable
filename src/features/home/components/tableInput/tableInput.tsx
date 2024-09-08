@@ -1,16 +1,10 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import { FiltersState, setFilter } from '../../../context/redux/users'
+import { setFilter } from '../../../../context/redux/users'
+import { FiltersState } from '../../../../types/filterProps'
+import { Props } from './tableInput.types'
 
-const TableInput = ({
-    value,
-    keyName,
-    icon,
-}: {
-    value: string
-    keyName: keyof FiltersState
-    icon: ReactElement
-}) => {
+const TableInput = ({ value, keyName, icon }: Props) => {
     const dispatch = useDispatch()
     const handleFilterChange = (key: keyof FiltersState, value: string) => {
         dispatch(setFilter({ key, value }))

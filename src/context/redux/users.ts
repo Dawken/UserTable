@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-export type FiltersState = {
-    name: string
-    username: string
-    email: string
-    phone: string
-}
+import { FiltersState } from '../../types/filterProps'
 
 type UsersState = {
     filters: FiltersState
