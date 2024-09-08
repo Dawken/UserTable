@@ -2,13 +2,13 @@ import React from 'react'
 import TdCell from '../../../features/home/components/tdCell'
 import { UserProps } from '../../../types/userProps'
 import useHome from './useHome'
-import TableInput from '../../../features/home/components/tableInput/tableInput'
 import NameIcon from '../../../components/ui/icons/nameIcon'
 import UserIcon from '../../../components/ui/icons/userIcon'
 import EmailIcon from '../../../components/ui/icons/emailIcon'
 import PhoneIcon from '../../../components/ui/icons/phoneIcon'
 import Loader from '../../../components/ui/animations/loader/loader'
 import TableElement from '../../../features/home/components/tableElement'
+import TableInput from '../../../features/home/components/tableInput/tableInput'
 
 const Home = () => {
     const { filters, filteredUsers, isLoading, isError, isKeyOfFiltersState } =
@@ -43,7 +43,7 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody
-                        className={`w-fit ${
+                        className={`w-full ${
                             isLoading || filteredUsers?.length === 0 || isError
                                 ? 'h-[calc(100%-60px)]'
                                 : 'h-fit'
