@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../context/redux/store'
-import { useGetUsersQuery } from '../../../services/usersApi'
-import { FiltersState } from '../../../types/filterProps'
+import { RootState } from '../../../../context/redux/store'
+import { useGetUsersQuery } from '../../../../services/usersApi'
 
-const useHome = () => {
+const useTableBody = () => {
     const filters = useSelector((state: RootState) => state.users.filters)
 
     const {
@@ -24,17 +23,13 @@ const useHome = () => {
             phone.toLowerCase().includes(filterPhone.toLowerCase())
         )
     })
-    const isKeyOfFiltersState = (key: string): key is keyof FiltersState => {
-        return key in filters
-    }
 
     return {
         filters,
         filteredUsers,
         isLoading,
         isError,
-        isKeyOfFiltersState,
     }
 }
 
-export default useHome
+export default useTableBody
