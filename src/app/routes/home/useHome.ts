@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../context/redux/store'
 import { useGetUsersQuery } from '../../../services/usersApi'
-import { FiltersState } from '../../../types/filterProps'
 
 const useHome = () => {
     const filters = useSelector((state: RootState) => state.users.filters)
@@ -24,16 +23,12 @@ const useHome = () => {
             phone.toLowerCase().includes(filterPhone.toLowerCase())
         )
     })
-    const isKeyOfFiltersState = (key: string): key is keyof FiltersState => {
-        return key in filters
-    }
 
     return {
         filters,
         filteredUsers,
         isLoading,
         isError,
-        isKeyOfFiltersState,
     }
 }
 

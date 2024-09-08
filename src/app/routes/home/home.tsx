@@ -11,35 +11,35 @@ import TableElement from '../../../features/home/components/tableElement'
 import TableInput from '../../../features/home/components/tableInput/tableInput'
 
 const Home = () => {
-    const { filters, filteredUsers, isLoading, isError, isKeyOfFiltersState } =
-        useHome()
+    const { filters, filteredUsers, isLoading, isError } = useHome()
 
-    const filtersIcons = {
-        name: <NameIcon />,
-        username: <UserIcon />,
-        email: <EmailIcon />,
-        phone: <PhoneIcon />,
-    }
+    const { name, username, email, phone } = filters
     return (
         <div className='size-full flex items-center justify-center relative overflow-y-auto'>
             <div className='overflow-x-auto m-2 max-h-[500px] h-full'>
                 <table className='table size-full max-w-[1000px] text-xs text-left text-gray-400 rounded-2xl overflow-hidden bg-gray-800 '>
                     <thead className='table bg-gray-700 break-word uppercase'>
                         <tr>
-                            {Object.keys(filters).map((key) => {
-                                if (isKeyOfFiltersState(key)) {
-                                    const value = filters[key]
-                                    return (
-                                        <TableInput
-                                            key={key}
-                                            value={value}
-                                            keyName={key}
-                                            icon={filtersIcons[key]}
-                                        />
-                                    )
-                                }
-                                return null
-                            })}
+                            <TableInput
+                                value={name}
+                                keyName={'name'}
+                                icon={<NameIcon />}
+                            />
+                            <TableInput
+                                value={username}
+                                keyName={'username'}
+                                icon={<UserIcon />}
+                            />
+                            <TableInput
+                                value={email}
+                                keyName={'email'}
+                                icon={<EmailIcon />}
+                            />
+                            <TableInput
+                                value={phone}
+                                keyName={'phone'}
+                                icon={<PhoneIcon />}
+                            />
                         </tr>
                     </thead>
                     <tbody
