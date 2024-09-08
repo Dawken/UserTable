@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../context/redux/store'
-import { useGetUsersQuery } from '../../../services/usersApi'
+import { RootState } from '../../../../context/redux/store'
+import { useGetUsersQuery } from '../../../../services/usersApi'
 
-const useHome = () => {
+const useTableBody = () => {
     const filters = useSelector((state: RootState) => state.users.filters)
 
     const {
@@ -32,4 +32,4 @@ const useHome = () => {
     }
 }
 
-export default useHome
+export default useTableBody

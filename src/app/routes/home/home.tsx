@@ -1,17 +1,15 @@
 import React from 'react'
-import TdCell from '../../../features/home/components/tdCell'
-import { UserProps } from '../../../types/userProps'
-import useHome from './useHome'
 import NameIcon from '../../../components/ui/icons/nameIcon'
 import UserIcon from '../../../components/ui/icons/userIcon'
 import EmailIcon from '../../../components/ui/icons/emailIcon'
 import PhoneIcon from '../../../components/ui/icons/phoneIcon'
-import Loader from '../../../components/ui/animations/loader/loader'
-import TableElement from '../../../features/home/components/tableElement'
 import TableInput from '../../../features/home/components/tableInput/tableInput'
+import TableBody from '../../../features/home/components/tableBody/tableBody'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../context/redux/store'
 
 const Home = () => {
-    const { filters, filteredUsers, isLoading, isError } = useHome()
+    const filters = useSelector((state: RootState) => state.users.filters)
 
     const { name, username, email, phone } = filters
     return (
@@ -42,46 +40,7 @@ const Home = () => {
                             />
                         </tr>
                     </thead>
-                    <tbody
-                        className={`w-full ${
-                            isLoading || filteredUsers?.length === 0 || isError
-                                ? 'h-[calc(100%-60px)]'
-                                : 'h-fit'
-                        } table`}
-                    >
-                        {isLoading ? (
-                            <TableElement>
-                                <Loader />
-                            </TableElement>
-                        ) : filteredUsers && filteredUsers.length > 0 ? (
-                            filteredUsers.map((user: UserProps) => {
-                                const { name, username, email, phone } = user
-                                return (
-                                    <tr
-                                        key={user.id}
-                                        className='border-b border-gray-700 font-medium hover:bg-gray-700 transition-all duration-300'
-                                    >
-                                        <TdCell name={name} />
-                                        <TdCell name={username} />
-                                        <TdCell name={email} />
-                                        <TdCell name={phone} />
-                                    </tr>
-                                )
-                            })
-                        ) : (
-                            !isError && (
-                                <TableElement>
-                                    Results not found :(
-                                </TableElement>
-                            )
-                        )}
-                        {isError && (
-                            <TableElement>
-                                Error occured while fetching data. Try again
-                                later
-                            </TableElement>
-                        )}
-                    </tbody>
+                    <TableBody />
                 </table>
             </div>
         </div>
